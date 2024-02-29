@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Creation user</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/users}" th:object="${user}">
+    <label for="id">ID(генерируется за вас): </label>
+    <input type="text" th:field="*{id}" id="id" readonly="readonly"/>
+    <br/>
+    <label for="name">Введите имя: </label>
+    <input type="text" th:field="*{firstname}" id="name"/>
+    <br/>
+    <label for="lastname">Введите фамилию: </label>
+    <input type="text" th:field="*{lastname}" id="lastname"/>
+    <br/>
+    <label for="age">Введите возраст: </label>
+    <input type="number" th:field="*{age}" id="age"/>
+    <br/><br>
+    <input type="submit" value="Создать/изменить"/>
+</form>
+<br>
+<form th:method="POST" th:action="*{user.getIdByDelete()}">
+    <input type="submit" value="Удалить"/>
+</form>
+<br>
+<a href="/PP_mvc_hibernate_war_exploded/users">перейти к списку пользователей</a>
+
+</body>
+</html>
