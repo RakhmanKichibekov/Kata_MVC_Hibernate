@@ -26,14 +26,26 @@ public class UserController {
     }
 
     @GetMapping(value = "/new")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String showNewUserForm(@ModelAttribute("user") User user) {
         return "newUser";
     }
 
     @GetMapping(value = "/edit")
-    public String editUser(Model model, @RequestParam int id) {
+    public String showEditUserForm(Model model, @RequestParam int id) {
         model.addAttribute("user", userService.getUserById(id));
-        return "newUser";
+        return "editUser";
+    }
+
+    @PostMapping(value = "/create")
+    public String createUser(@ModelAttribute("user") User user) {
+        userService.addUser(user);
+        return "redirect:/users";
+    }
+
+    @PostMapping(value = "/update")
+    public String updateUser(@ModelAttribute("user") User user) {
+        userService.updateUser(user);
+        return "redirect:/users";
     }
 
     @PostMapping(value = "/delete")
@@ -41,15 +53,4 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/users";
     }
-
-    @PostMapping()
-    public String createUser(@ModelAttribute("user") User user) {
-        if (userService.getUserById(user.getId()) != null) {
-            userService.updateUser(user);
-        } else {
-            userService.addUser(user);
-        }
-        return "redirect:/users";
-    }
-
 }

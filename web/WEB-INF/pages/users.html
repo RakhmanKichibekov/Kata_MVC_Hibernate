@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
+
 <h1>Пользователи</h1>
 <br>
 <table>
@@ -19,7 +20,6 @@
         <td th:text="${user.getLastname()}">Lastname</td>
         <td th:text="${user.getAge()}">Age</td>
         <td><a th:href="${user.getIdByChange()}">Изменить/Удалить</a></td>
-
     </tr>
     </tbody>
 </table>
@@ -27,5 +27,4 @@
 <a href="users/new">создать пользователя</a>
 
 </body>
-
 </html>
